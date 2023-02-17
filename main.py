@@ -16,6 +16,8 @@ player1 = player.Player(400, 300, 5)
 # Main game loop
 running = True
 clock = pygame.time.Clock()
+FPS = 60
+
 while running:
     # Handle events
     for event in pygame.event.get():
@@ -42,7 +44,7 @@ while running:
     # Update the display
     pygame.display.update()
 
-    clock.tick(60)
+    clock.tick(FPS)
 
 # Clean up
 pygame.quit()
