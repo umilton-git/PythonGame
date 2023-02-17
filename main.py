@@ -13,6 +13,8 @@ pygame.display.set_caption("PyGame")
 # Create the player object
 player1 = player.Player(400, 300, 5)
 
+region_rect = pygame.Rect(100, 100, 600, 400)
+
 # Main game loop
 running = True
 clock = pygame.time.Clock()
@@ -34,6 +36,11 @@ while running:
         player1.move(0, -1)
     if keys[pygame.K_DOWN]:
         player1.move(0, 1)
+
+    
+    # Clamp the player position to the region boundaries
+    player1.rect.clamp_ip(region_rect)
+
 
     # Fill the window with white
     win.fill((255, 255, 255))
