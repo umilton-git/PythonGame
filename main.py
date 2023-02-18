@@ -1,5 +1,6 @@
 import pygame
-from Resources.Components.Player import player
+import sys
+from Resources.Components.Player import player, camera
 
 # Initialize PyGame
 pygame.init()
@@ -10,10 +11,11 @@ win_height = 600
 win = pygame.display.set_mode((win_width, win_height))
 pygame.display.set_caption("PyGame")
 
-# Create the player object
-player1 = player.Player(400, 300, 5)
+# Camera setup
+camera_group = camera.Camera()
 
-region_rect = pygame.Rect(100, 100, 600, 400)
+# Create the player object
+player1 = player.Player(400, 300, 5, camera_group)
 
 # Main game loop
 running = True
@@ -25,6 +27,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+            sys.exit()
 
     # Handle input
     keys = pygame.key.get_pressed()
@@ -37,16 +40,12 @@ while running:
     if keys[pygame.K_DOWN]:
         player1.move(0, 1)
 
-    
-    # Clamp the player position to the region boundaries
-    player1.rect.clamp_ip(region_rect)
-
-
     # Fill the window with white
-    win.fill((255, 255, 255))
+    win.fill((0, 0, 0))
 
     # Draw the player
-    player1.draw(win)
+    camera_group.update()
+    camera_group.custom_draw(player1)
 
     # Update the display
     pygame.display.update()

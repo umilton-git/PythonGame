@@ -1,8 +1,9 @@
 import pygame
 
 
-class Player:
-    def __init__(self, x, y, speed):
+class Player(pygame.sprite.Sprite):
+    def __init__(self, x, y, speed, group):
+        super().__init__(group)
         self.image = pygame.image.load(
             "Resources/Sprites/Placeholder/LilDude.png")
         self.rect = self.image.get_rect()
