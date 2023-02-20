@@ -15,7 +15,8 @@ pygame.display.set_caption("PyGame")
 camera_group = camera.Camera()
 
 # Create the player object
-player1 = player.Player(400, 300, 5, camera_group)
+p_speed = 3
+player1 = player.Player(400, 300, p_speed, camera_group)
 
 # Main game loop
 running = True
@@ -39,8 +40,10 @@ while running:
         player1.move(0, -1)
     if keys[pygame.K_DOWN] and player1.rect.bottom <= pygame.display.get_surface().get_size()[1]:
         player1.move(0, 1)
-    if keys[pygame.K_a]:
-        print(player1.rect.centerx)
+    if keys[pygame.K_x]:
+        player1.speed = p_speed * 2
+    else:
+        player1.speed = p_speed
 
     # Fill the window with white
     win.fill((0, 0, 0))
