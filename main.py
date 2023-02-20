@@ -31,13 +31,13 @@ while running:
 
     # Handle input
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]:
+    if keys[pygame.K_LEFT] and player1.rect.bottomleft[0] - 1 >= 0:
         player1.move(-1, 0)
-    if keys[pygame.K_RIGHT]:
+    if keys[pygame.K_RIGHT] and player1.rect.topright[0] + 1 <= pygame.display.get_surface().get_size()[0]:
         player1.move(1, 0)
-    if keys[pygame.K_UP]:
+    if keys[pygame.K_UP] and player1.rect.topleft[1] + 1 >= 0:
         player1.move(0, -1)
-    if keys[pygame.K_DOWN]:
+    if keys[pygame.K_DOWN] and player1.rect.bottomleft[1] - 1 <= pygame.display.get_surface().get_size()[1]:
         player1.move(0, 1)
     if keys[pygame.K_a]:
         print(player1.rect.centerx)
