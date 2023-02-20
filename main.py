@@ -39,6 +39,8 @@ while running:
         player1.move(0, -1)
     if keys[pygame.K_DOWN]:
         player1.move(0, 1)
+    if keys[pygame.K_a]:
+        print(player1.rect.centerx)
 
     # Fill the window with white
     win.fill((0, 0, 0))
