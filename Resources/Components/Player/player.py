@@ -4,8 +4,10 @@ import pygame
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, speed, group):
         super().__init__(group)
-        self.image = pygame.image.load(
-            "Resources/Sprites/Placeholder/LilDude.png")
+        player_image = pygame.image.load(
+            "Resources/Sprites/Player/AIM.png")
+        scaled_image = pygame.transform.scale(player_image, (30,57))
+        self.image = scaled_image
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
