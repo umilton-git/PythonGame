@@ -53,10 +53,17 @@ class Raycast:
                 depth = depth_vert
             else:
                 depth = depth_hor
+
+            # remove fishbowl effect
+            depth *= math.cos(self.game.player.angle - ray_angle)
             
-            # Draw for debug
-            pygame.draw.line(self.game.screen, 'yellow', (50 * ox, 50 * oy),
-                            (50 * ox + 50 * depth * cos_a, 50 * oy + 50 * depth * sin_a), 2)
+            # projection
+            proj_height = screen_dist / (depth + 0.0001)
+
+            # draw walls
+            color = [255 / (1 + depth ** 5 * 0.00002)] * 3
+            pygame.draw.rect(self.game.screen, color,
+                             (ray * scale, h_height - proj_height // 2, scale, proj_height))
             ray_angle += delta_angle
 
     def update(self):

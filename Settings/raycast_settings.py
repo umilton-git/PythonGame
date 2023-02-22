@@ -3,6 +3,8 @@ import math
 # General
 
 RES = WIDTH, HEIGHT = 800, 600
+h_width = WIDTH // 2
+h_height = HEIGHT // 2
 FPS = 60
 
 # Player
@@ -20,3 +22,6 @@ num_rays = WIDTH // 2
 half_num_rays = num_rays // 2
 delta_angle = FOV / num_rays
 max_depth = 20
+
+screen_dist = h_width / math.tan(half_FOV)
+scale = WIDTH // num_rays
