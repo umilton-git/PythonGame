@@ -1,27 +1,24 @@
 import pygame
 import sys
 from Resources.Components.Player import player, camera
+from Settings.main_settings import *
 
 # Initialize PyGame
 pygame.init()
 
 # Set up the window
-win_width = 800
-win_height = 600
-win = pygame.display.set_mode((win_width, win_height))
-pygame.display.set_caption("PyGame")
+win = pygame.display.set_mode(RES)
 
 # Camera setup
 camera_group = camera.Camera()
 
 # Create the player object
-p_speed = 3
+
 player1 = player.Player(400, 300, p_speed, camera_group)
 
 # Main game loop
 running = True
 clock = pygame.time.Clock()
-FPS = 60
 
 while running:
     # Handle events
@@ -32,13 +29,13 @@ while running:
 
     # Handle input
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT] and player1.rect.bottomleft[0] - 1 >= 0:
+    if keys[pygame.K_LEFT] and player1.rect.bottomleft[0] - 1 >= 1:
         player1.move(-1, 0)
-    if keys[pygame.K_RIGHT] and player1.rect.topright[0] + 1 <= pygame.display.get_surface().get_size()[0]:
+    if keys[pygame.K_RIGHT] and player1.rect.topright[0] + 1 <= pygame.display.get_surface().get_size()[0] - 1:
         player1.move(1, 0)
-    if keys[pygame.K_UP] and player1.rect.top >= 1:
+    if keys[pygame.K_UP] and player1.rect.top >= 2:
         player1.move(0, -1)
-    if keys[pygame.K_DOWN] and player1.rect.bottom <= pygame.display.get_surface().get_size()[1]:
+    if keys[pygame.K_DOWN] and player1.rect.bottom <= pygame.display.get_surface().get_size()[1] - 3:
         player1.move(0, 1)
     if keys[pygame.K_x]:
         player1.speed = p_speed * 2
@@ -56,6 +53,7 @@ while running:
     pygame.display.update()
 
     clock.tick(FPS)
+    pygame.display.set_caption(f'{clock.get_fps() :.1f}')
 
 # Clean up
 pygame.quit()
