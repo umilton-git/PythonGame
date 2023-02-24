@@ -4,6 +4,7 @@ from Settings.raycast_settings import *
 from Resources.Components.Raycasting.map import *
 from Resources.Components.Raycasting.r_player import *
 from Resources.Components.Raycasting.raycast import *
+from Resources.Components.Raycasting.object_renderer import *
 
 class RaycastGame:
     def __init__(self):
@@ -16,6 +17,7 @@ class RaycastGame:
     def new_game(self):
         self.map = Map(self)
         self.player = RaycastPlayer(self)
+        self.object_renderer = ObjectRenderer(self)
         self.raycasting = Raycast(self)
     
     def update(self):
@@ -26,9 +28,10 @@ class RaycastGame:
         pygame.display.set_caption(f'{self.clock.get_fps() :.1f}')
 
     def draw(self):
-        self.screen.fill('black')
+        #self.screen.fill('black')
         #self.map.draw()
         #self.player.draw()
+        self.object_renderer.draw()
 
     def check_events(self):
         for event in pygame.event.get():

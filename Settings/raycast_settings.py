@@ -9,10 +9,11 @@ FPS = 60
 
 # Player
 
-player_pos = 1.5, 5
+player_pos = 6.5, 5
 player_angle = 0
 player_speed = 0.002
 player_rot_speed = 0.001
+player_size_scale = 60
 
 # Raycasting
 
@@ -25,3 +26,8 @@ max_depth = 20
 
 screen_dist = h_width / math.tan(half_FOV)
 scale = WIDTH // num_rays
+
+texture_size = 256
+h_texture_size = texture_size // 2
+
+floor_color = (21, 1, 56)
